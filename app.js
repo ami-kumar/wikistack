@@ -9,6 +9,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+// do we need this here? from this...
+var mongoose = require('mongoose'); 
+
+mongoose.connect('mongodb://localhost/wikistack');
+var db = mongoose.connection;
+
+db.on( error, console.error.bind(console, 'mongodb connection error:') );
+// ... to this
+
 var app = express();
 app.engine('html', swig.renderFile);
 
