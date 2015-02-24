@@ -14,3 +14,7 @@ a {
 .footnote {
 	color: gray;
 }
+
+.large-input {
+	height: 250px;
+}
