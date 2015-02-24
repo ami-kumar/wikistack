@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
     <title>{% block title %}WikiStack{% endblock %}</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+
+
+
   </head>
   <body>
-    {% block content %}{% endblock %}
+	<div class="collapse navbar-collapse" id="top-nav">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">{% block firstsection %}WIKISTACK{% endblock %}</a></li>
+			<li><a href="#about">{% block secondsection %}ADD PAGE{% endblock %}</a></li>
+		</ul>
+	</div>
+
+	<div class="main-content">
+		<h1>{% block heading %} BROWSE MY WIKISTACK {% block heading %}</h1>
+		
+		<hr>
+		<ul>
+			<li><a href={%block url1%}"http://www.google.com"{%endblock%}>{% block bullet1 %}Fullstack Home{% endblock %}</a></li>
+			<li><a href={%block url2%}"http://www.google.com"{%endblock%}>{% block bullet2 %}About Me{% endblock %}</a></li>
+			<li><a href={%block url3%}"http://www.google.com"{%endblock%}>{% block bullet3 %}My Projects{% endblock %}</a></li>
+			<li><a href={%block url4%}"http://www.google.com"{%endblock%}>{% block bullet4 %}My City{% endblock %}</a></li>
+			<li><a href={%block url5%}"http://www.google.com"{%endblock%}>{% block bullet5 %}Code I've written{% endblock %}</a></li>
+		</ul>
+
+		<br><br>
+		<p class="footnote">{% block footnote %}WikiStack, Fullstack Academy{% endblock %}</p>
+	</div>
+
   </body>
 </html>
+
