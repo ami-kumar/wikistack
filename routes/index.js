@@ -11,6 +11,18 @@ router.get('/', function(req, res, next) {
 
 router.get('/add', function(req, res, next) {
 	res.render('add', { title: 'ADD A PAGE' })
-})
+});
+
+router.get('/wiki/:urlname', function(req, res, next) {
+	var models = require('../models/');
+	var urlname = req.params.urlname;
+	var docs = models.Page.find(function(err, data) {
+		for (doc in data) {
+			if (data[doc].url_name == urlname) {
+				res.render('show', { title: data[doc].title, body: data[doc].body });
+			}
+		}
+	}); 
+});
 
 module.exports = router;
