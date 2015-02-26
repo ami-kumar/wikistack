@@ -13,7 +13,8 @@ var pageSchema = new Schema({
 	owner_id: String,
 	body: String,
 	date: {type: Date, default: Date.now}, 
-	status: Number
+	status: Number, 
+	tags: Array
 });
 
 pageSchema.virtual('full_route').get(function() {
