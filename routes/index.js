@@ -13,6 +13,18 @@ router.get('/add', function(req, res, next) {
 	res.render('add', { title: 'ADD A PAGE' })
 });
 
+router.get('/tags', function(req, res, next) {
+	var models = require('../models/');
+	var tags = []
+	var docs = models.Page.find(function(err, data) {
+		for (doc in data) {
+			tags = tags.concat(data[doc].tags)
+			console.log(tags)
+		}
+		res.render('tagsearch', {tags: tags})
+	}); 
+})
+
 router.get('/wiki/:urlname', function(req, res, next) {
 	var models = require('../models/');
 	var urlname = req.params.urlname;
