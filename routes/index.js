@@ -25,6 +25,16 @@ router.get('/tags', function(req, res, next) {
 	}); 
 })
 
+router.get('/:tag', function(req, res, next) {
+	var models = require('../models/')
+	var tag = req.params.tag
+	var docs = models.Page.find({
+		tags: {$elemMatch: {$in: [tag]}}
+	}, function(err, data) {
+		res.render('pagesbytag', {pages: data})
+	})
+}) // WORKING ON THIS RIGHT NOW ***
+
 router.get('/wiki/:urlname', function(req, res, next) {
 	var models = require('../models/');
 	var urlname = req.params.urlname;
