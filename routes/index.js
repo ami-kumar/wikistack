@@ -16,11 +16,11 @@ router.get('/add', function(req, res, next) {
 router.get('/wiki/:urlname', function(req, res, next) {
 	var models = require('../models/');
 	var urlname = req.params.urlname;
-	// var tags = data[doc]
 	var docs = models.Page.find(function(err, data) {
 		for (doc in data) {
+			var tags = '#' + data[doc].tags.join([separator = ' #']);
 			if (data[doc].url_name == urlname) {
-				res.render('show', { title: data[doc].title, body: data[doc].body, tags: data[doc].tags });
+				res.render('show', { title: data[doc].title, body: data[doc].body, tags: tags });
 			}
 		}
 	}); 
