@@ -29,6 +29,16 @@ router.get('/tags', function(req, res, next) {
 	}); 
 })
 
+router.get('/edit/:urlname', function(req, res, next) {
+	var models = require('../models/')
+	var url_name = req.params.urlname
+	var docs = models.Page.find({
+		url_name: url_name
+	}, function(err, data) {
+		res.render('edit', {title: 'Edit Page', doc: data[0]})
+	})
+})
+
 router.get('/:tag', function(req, res, next) {
 	var models = require('../models/')
 	var tag = req.params.tag
@@ -38,6 +48,23 @@ router.get('/:tag', function(req, res, next) {
 		res.render('pagesbytag', {pages: data})
 	})
 }) 
+
+router.get('/delete/:urlname', function(req, res, next) {
+	var models = require('../models/');
+	var url_name = req.params.urlname
+	var docs = models.Page.find({
+		url_name: url_name
+	},function(err, data) {
+		models.Page.remove(data[0], function(error, docs) {
+			console.log(docs)
+			models.Page.find(function(error2, docs2) {
+				res.render('index', {title: 'Browse My WikiStack', docs: docs2})
+			})
+		})
+		console.log(data[0])
+		
+	})
+})
 
 router.get('/similars/:urlname', function(req, res, next) {
 	var models = require('../models/');
@@ -56,7 +83,6 @@ router.get('/similars/:urlname', function(req, res, next) {
 		}, function(err, data) {
 			res.render('index', {title: 'Similar Pages', docs: data})
 		})
-
 	})
 
 })
