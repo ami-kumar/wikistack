@@ -51,7 +51,8 @@ router.get('/similars/:urlname', function(req, res, next) {
 		console.log(tags)
 
 		var docs2 = models.Page.find({
-			tags: {$elemMatch: {$in: tags}}
+			tags: {$elemMatch: {$in: tags}},
+			url_name: {$ne: url_name}
 		}, function(err, data) {
 			res.render('index', {title: 'Similar Pages', docs: data})
 		})
